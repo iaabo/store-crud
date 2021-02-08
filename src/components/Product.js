@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Table, Modal, Button } from "react-bootstrap";
-import { FaEye, FaEdit, FaDotCircle } from "react-icons/fa";
+import { FaEye, FaEdit } from "react-icons/fa";
+import { GoPrimitiveDot } from "react-icons/go";
 import { RiDeleteBinLine } from "react-icons/ri";
 import "./Product.css";
 
@@ -48,7 +49,7 @@ const Product = (props) => {
                       e.target.src =
                         "https://images.pexels.com/photos/2672097/pexels-photo-2672097.jpeg?cs=srgb&dl=pexels-markus-spiske-2672097.jpg&fm=jpg";
                     }}
-                    style={{ height: "100px", width: "100px" }}
+                    style={{ height: "200px", width: "200px" }}
                   />
                   <p>
                     <br />
@@ -58,8 +59,8 @@ const Product = (props) => {
                   <p>Price: {props.price} €</p>
                   <p>
                     In Stock
-                    <FaDotCircle
-                      style={{ color: "green", height: "10px", width: "10px" }}
+                    <GoPrimitiveDot
+                      style={{ color: "green", height: "20px", width: "20px" }}
                     />
                   </p>
                 </div>

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Modal } from "react-bootstrap";
 import Product from "./Product";
+import AddProduct from "./AddProduct";
+import "./Product.css";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   //Fetch Product Data
   useEffect(() => {
@@ -12,17 +17,33 @@ const ProductList = () => {
       .then((response) => setProducts(response));
   }, []);
 
-
   //Delete Product
   const handleRemove = (id) =>
     setProducts(products.filter((product) => product.id !== id));
 
-
   return (
     <div>
-      <div>
-        <h1>Store Inventory</h1>
-        <Button variant="secondary">Add Product</Button>
+      <div className="container">
+        <h1 className="title">Store Inventory</h1>
+        <Button className="button" variant="secondary" onClick={handleShow}>
+          Add Product
+        </Button>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton className="product-title">
+            Add Product
+          </Modal.Header>
+          <Modal.Body>
+            <AddProduct />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Return
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Add Product
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
       <div className="container">
         <Table>
