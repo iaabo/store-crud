@@ -5,12 +5,18 @@ import Product from "./Product";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
 
-
+  //Fetch Product Data
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
       .then((response) => setProducts(response));
   }, []);
+
+
+  //Delete Product
+  const handleRemove = (id) =>
+    setProducts(products.filter((product) => product.id !== id));
+
 
   return (
     <div>
@@ -28,11 +34,11 @@ const ProductList = () => {
             <th style={{ width: "100px" }}>Image</th>
             <th style={{ width: "50px" }}>Check</th>
             <th style={{ width: "50px" }}>Update</th>
-            <th style={{ width: "50px" }}>Eliminate</th>
+            <th style={{ width: "50px" }}>Delete</th>
           </tr>
         </Table>
         {products.map((product) => (
-          <Product {...product} key={product.id} />
+          <Product {...product} key={product.id} handleRemove={handleRemove} />
         ))}
       </div>
     </div>

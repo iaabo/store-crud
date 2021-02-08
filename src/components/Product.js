@@ -57,7 +57,7 @@ const Product = (props) => {
                   <p>Category: {props.category}</p>
                   <p>Price: {props.price} €</p>
                   <p>
-                    In Stock{" "}
+                    In Stock
                     <FaDotCircle
                       style={{ color: "green", height: "10px", width: "10px" }}
                     />
@@ -75,7 +75,14 @@ const Product = (props) => {
             <FaEdit style={{ width: "50px", color: "grey" }} />
           </td>
           <td style={{ width: "50px" }}>
-            <RiDeleteBinLine style={{ width: "50px", color: "red" }} />
+            <RiDeleteBinLine
+              style={{ width: "50px", color: "red", cursor: "pointer" }}
+              onClick={() => {
+                /* Message to confirm if you want to delete the item */
+                if (window.confirm("Do you want to delete this product?"))
+                  props.handleRemove(props.id);
+              }}
+            />
           </td>
         </tr>
       </Table>
