@@ -1,7 +1,14 @@
-import React from "react";
-import { Table } from "react-bootstrap";
+import React, { useState } from "react";
+import { Table, Modal, Button } from "react-bootstrap";
+import { FaEye, FaEdit, FaDotCircle } from "react-icons/fa";
+import { RiDeleteBinLine } from "react-icons/ri";
+import "./Product.css";
 
 const Product = (props) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div>
       <Table>
@@ -14,12 +21,62 @@ const Product = (props) => {
             <img
               src={props.image}
               alt=""
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src =
+                  "https://images.pexels.com/photos/2672097/pexels-photo-2672097.jpeg?cs=srgb&dl=pexels-markus-spiske-2672097.jpg&fm=jpg";
+              }}
               style={{ height: "40px", width: "40px" }}
             />
           </td>
-          <td style={{ width: "50px" }}>Check</td>
-          <td style={{ width: "50px" }}>Update</td>
-          <td style={{ width: "50px" }}>Eliminate</td>
+          <td style={{ width: "50px" }}>
+            <FaEye
+              style={{ width: "50px", color: "green", cursor: "pointer" }}
+              onClick={handleShow}
+            />
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton className="product-title">
+                {props.title}
+              </Modal.Header>
+              <Modal.Body>
+                <div>
+                  <img
+                    src={props.image}
+                    alt=""
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src =
+                        "https://images.pexels.com/photos/2672097/pexels-photo-2672097.jpeg?cs=srgb&dl=pexels-markus-spiske-2672097.jpg&fm=jpg";
+                    }}
+                    style={{ height: "100px", width: "100px" }}
+                  />
+                  <p>
+                    <br />
+                    {props.description}
+                  </p>
+                  <p>Category: {props.category}</p>
+                  <p>Price: {props.price} €</p>
+                  <p>
+                    In Stock{" "}
+                    <FaDotCircle
+                      style={{ color: "green", height: "10px", width: "10px" }}
+                    />
+                  </p>
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="warning" onClick={handleClose}>
+                  Return
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </td>
+          <td style={{ width: "50px" }}>
+            <FaEdit style={{ width: "50px", color: "grey" }} />
+          </td>
+          <td style={{ width: "50px" }}>
+            <RiDeleteBinLine style={{ width: "50px", color: "red" }} />
+          </td>
         </tr>
       </Table>
     </div>

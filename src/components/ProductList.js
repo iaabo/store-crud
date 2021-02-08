@@ -5,6 +5,7 @@ import Product from "./Product";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
 
+
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
