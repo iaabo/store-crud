@@ -23,7 +23,7 @@ const ProductList = () => {
   const handleRemove = (id) =>
     setProducts(products.filter((product) => product.id !== id));
 
-  //add Product
+  //Add Product
   const addProduct = (newProduct) => {
     setProducts([{ ...newProduct, id: uuidv4() }, ...products]);
     console.log(...products);
@@ -34,7 +34,7 @@ const ProductList = () => {
       <div className="container">
         <h1 className="title">Store Inventory</h1>
 
-        {/*   Add Product Feature */}
+        {/*   Add Product Modal when clicking the Add Product button */}
 
         <Button className="button" variant="secondary" onClick={handleShow}>
           Add Product
@@ -52,7 +52,13 @@ const ProductList = () => {
             </Button>
           </Modal.Footer>
         </Modal>
+
+       {/*  Counter for the number of products in inventory */}
+        <p>
+          <b>Total:</b> {products.length} products
+        </p>
       </div>
+
 
       {/* List of Products */}
 
