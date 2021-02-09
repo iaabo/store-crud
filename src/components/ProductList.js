@@ -50,7 +50,7 @@ const ProductList = () => {
   });
 
   return (
-    <div>
+    <div >
       <div className="container">
         <div className="search-container">
           <h1 className="title">Store Inventory</h1>
