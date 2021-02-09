@@ -2,50 +2,74 @@ import React, { useContext, useState, useEffect } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 
 const EditProduct = (props) => {
-  const [editProduct, setEditProduct] = useState({});
+  const { id, title, description, category, price, image, editProduct } = props;
+  const [editedProduct, setEditedProduct] = useState({
+    id: id,
+    title: title,
+    description: description,
+    category: category,
+    price: price,
+    image: image,
+  });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProduct({ ...editedProduct, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    editProduct(e, editedProduct);
+    alert(
+      "The Product was updated with success. Please, go back to inventory."
+    );
+  };
   return (
     <div>
       <Form.Group>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Form.Control
             size="sm"
             type="text"
             name="title"
-            placeholder="Title"
-            value={editProduct.title}
+            defaultValue={title}
+            onChange={handleChange}
+           
           />
           <br />
           <Form.Control
             size="sm"
             type="text"
             name="description"
-            placeholder="Description"
-            value={editProduct.description}
+            defaultValue={description}
+            onChange={handleChange}
+            
           />
           <br />
           <Form.Control
             size="sm"
             type="text"
             name="category"
-            placeholder="Category"
-            value={editProduct.category}
+            defaultValue={category}
+            onChange={handleChange}
+            
           />
           <br />
           <Form.Control
             size="sm"
             type="text"
             name="price"
-            placeholder="Price"
-            value={editProduct.price}
+            defaultValue={price}
+            onChange={handleChange}
+            required
           />
           <br />
           <Form.Control
             size="sm"
             type="text"
             name="image"
-            placeholder="Image URL"
-            value={editProduct.image}
+            defaultValue={image}
+            onChange={handleChange}
+            required
           />
           <Modal.Footer>
             <Button variant="primary" type="submit">

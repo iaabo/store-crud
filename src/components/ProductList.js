@@ -31,15 +31,13 @@ const ProductList = () => {
 
   //Edit Product
 
-  /* const editProduct = (event, editedProduct) => {
-    event.preventDefault();
+  const editProduct = (e, editedProduct) => {
+    e.preventDefault();
     const newProductList = products.map((product) =>
       product.id === editedProduct.id ? editedProduct : product
     );
-    setProducts({
-      newProductList,
-    });
-  }; */
+    setProducts(newProductList);
+  };
 
   return (
     <div>
@@ -91,7 +89,7 @@ const ProductList = () => {
             {...product}
             key={product.id}
             handleRemove={handleRemove}
-            /* editProduct={editProduct} */
+            editProduct={editProduct}
           />
         ))}
       </div>

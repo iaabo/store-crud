@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Modal, Button } from "react-bootstrap";
+import { Table, Modal, Button, Form } from "react-bootstrap";
 import { FaEye, FaEdit } from "react-icons/fa";
 import { GoPrimitiveDot } from "react-icons/go";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -7,7 +7,8 @@ import EditProduct from "./EditProduct";
 import "./Product.css";
 
 const Product = (props) => {
-  //For the Check Modal
+  const { id, title, description, category, price, image, editProduct } = props;
+  //For the Check
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -15,18 +16,40 @@ const Product = (props) => {
   const [showEdit, setShowEdit] = useState(false);
   const handleCloseEdit = () => setShowEdit(false);
   const handleShowEdit = () => setShowEdit(true);
+  const [editedProduct, setEditedProduct] = useState({
+    id: id,
+    title: title,
+    description: description,
+    category: category,
+    price: price,
+    image: image,
+  });
+
+  //Edit Product
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProduct({ ...editedProduct, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    editProduct(e, editedProduct);
+    alert(
+      "The Product was updated with success. Please, go back to inventory."
+    );
+  };
 
   return (
     <div>
       <Table>
         <tr>
-          <td style={{ width: "150px" }}>{props.id}</td>
-          <td style={{ width: "200px" }}>{props.title}</td>
-          <td style={{ width: "100px" }}>{props.category}</td>
-          <td style={{ width: "100px" }}>{props.price} €</td>
+          <td style={{ width: "150px" }}>{id}</td>
+          <td style={{ width: "200px" }}>{title}</td>
+          <td style={{ width: "100px" }}>{category}</td>
+          <td style={{ width: "100px" }}>{price} €</td>
           <td style={{ width: "100px" }}>
             <img
-              src={props.image}
+              src={image}
               alt=""
               onError={(e) => {
                 e.target.onerror = null;
@@ -48,12 +71,12 @@ const Product = (props) => {
             />
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton className="product-title">
-                {props.title}
+                {title}
               </Modal.Header>
               <Modal.Body>
                 <div>
                   <img
-                    src={props.image}
+                    src={image}
                     alt=""
                     onError={(e) => {
                       e.target.onerror = null;
@@ -64,10 +87,10 @@ const Product = (props) => {
                   />
                   <p>
                     <br />
-                    {props.description}
+                    {description}
                   </p>
-                  <p>Category: {props.category}</p>
-                  <p>Price: {props.price} €</p>
+                  <p>Category: {category}</p>
+                  <p>Price: {price} €</p>
                   <p>
                     In Stock
                     <GoPrimitiveDot
@@ -96,7 +119,56 @@ const Product = (props) => {
                 Edit Product
               </Modal.Header>
               <Modal.Body>
-                <EditProduct />
+                <Form.Group>
+                  <form onSubmit={handleSubmit}>
+                    <Form.Control
+                      size="sm"
+                      type="text"
+                      name="title"
+                      defaultValue={title}
+                      onChange={handleChange}
+                    />
+                    <br />
+                    <Form.Control
+                      size="sm"
+                      type="text"
+                      name="description"
+                      defaultValue={description}
+                      onChange={handleChange}
+                    />
+                    <br />
+                    <Form.Control
+                      size="sm"
+                      type="text"
+                      name="category"
+                      defaultValue={category}
+                      onChange={handleChange}
+                    />
+                    <br />
+                    <Form.Control
+                      size="sm"
+                      type="text"
+                      name="price"
+                      defaultValue={price}
+                      onChange={handleChange}
+                      required
+                    />
+                    <br />
+                    <Form.Control
+                      size="sm"
+                      type="text"
+                      name="image"
+                      defaultValue={image}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Modal.Footer>
+                      <Button variant="primary" type="submit">
+                        Edit Product
+                      </Button>
+                    </Modal.Footer>
+                  </form>
+                </Form.Group>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleCloseEdit}>
@@ -106,16 +178,15 @@ const Product = (props) => {
             </Modal>
           </td>
 
-
           {/* Delete Button */}
-          
+
           <td style={{ width: "50px" }}>
             <RiDeleteBinLine
               style={{ width: "50px", color: "red", cursor: "pointer" }}
               onClick={() => {
                 /* Message to confirm if you want to delete the item */
                 if (window.confirm("Do you want to delete this product?"))
-                  props.handleRemove(props.id);
+                  props.handleRemove(id);
               }}
             />
           </td>
