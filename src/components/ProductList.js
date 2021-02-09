@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Modal } from "react-bootstrap";
+import { Table, Button, Modal, InputGroup, FormControl } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import Product from "./Product";
 import AddProduct from "./AddProduct";
@@ -7,6 +7,7 @@ import "./Product.css";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,6 +18,12 @@ const ProductList = () => {
       .then((response) => response.json())
       .then((response) => setProducts(response));
   }, []);
+
+  //Search Product
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
 
   //Delete Product
   const handleRemove = (id) =>
@@ -38,11 +45,28 @@ const ProductList = () => {
     setProducts(newProductList);
   };
 
+  const filteredProducts = products.filter((product) => {
+    return product.title.toLowerCase().startsWith(search.toLowerCase());
+  });
+
   return (
     <div>
       <div className="container">
-        <h1 className="title">Store Inventory</h1>
-
+        <div className="search-container">
+          <h1 className="title">Store Inventory</h1>
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text>🔍</InputGroup.Text>
+              <FormControl
+                type="text"
+                placeholder="Search for title"
+                value={search}
+                onChange={handleSearch}
+                className="search-bar"
+              />
+            </InputGroup.Prepend>
+          </InputGroup>
+        </div>
         {/*   Add Product Modal when clicking the Add Product button */}
 
         <Button className="button" variant="secondary" onClick={handleShow}>
@@ -83,7 +107,7 @@ const ProductList = () => {
             <th style={{ width: "50px" }}>Delete</th>
           </tr>
         </Table>
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <Product
             {...product}
             key={product.id}
