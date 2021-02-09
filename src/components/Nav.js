@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
+import woman from "../assets/woman.png";
 
 const Nav = () => {
   return (
@@ -12,7 +13,7 @@ const Nav = () => {
           <Navbar.Text>
             Signed in as: <a href="#login">Admin User</a>
             <img
-              src="https://www.flaticon.com/svg/vstatic/svg/2922/2922561.svg?token=exp=1612896180~hmac=3493db7c1752b682e8521402024059f7"
+              src={woman}
               style={{
                 width: "50px",
                 height: "50px",
