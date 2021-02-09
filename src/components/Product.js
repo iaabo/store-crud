@@ -14,7 +14,7 @@ const Product = (props) => {
     <div>
       <Table>
         <tr>
-          <td style={{ width: "20px" }}>{props.id}</td>
+          <td style={{ width: "150px" }}>{props.id}</td>
           <td style={{ width: "200px" }}>{props.title}</td>
           <td style={{ width: "100px" }}>{props.category}</td>
           <td style={{ width: "100px" }}>{props.price} €</td>
@@ -25,7 +25,7 @@ const Product = (props) => {
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src =
-                  "https://images.pexels.com/photos/2672097/pexels-photo-2672097.jpeg?cs=srgb&dl=pexels-markus-spiske-2672097.jpg&fm=jpg";
+                  "https://images.pexels.com/photos/1214212/pexels-photo-1214212.jpeg?cs=srgb&dl=pexels-stephanie-ho-1214212.jpg&fm=jpg";
               }}
               style={{ height: "40px", width: "40px" }}
             />
@@ -47,7 +47,7 @@ const Product = (props) => {
                     onError={(e) => {
                       e.target.onerror = null;
                       e.target.src =
-                        "https://images.pexels.com/photos/2672097/pexels-photo-2672097.jpeg?cs=srgb&dl=pexels-markus-spiske-2672097.jpg&fm=jpg";
+                        "https://images.pexels.com/photos/1214212/pexels-photo-1214212.jpeg?cs=srgb&dl=pexels-stephanie-ho-1214212.jpg&fm=jpg";
                     }}
                     style={{ height: "200px", width: "200px" }}
                   />

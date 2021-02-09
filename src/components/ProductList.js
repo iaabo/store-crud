@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Modal } from "react-bootstrap";
+import { v4 as uuidv4 } from "uuid";
+
 import Product from "./Product";
 import AddProduct from "./AddProduct";
 import "./Product.css";
@@ -21,10 +23,19 @@ const ProductList = () => {
   const handleRemove = (id) =>
     setProducts(products.filter((product) => product.id !== id));
 
+  //add Product
+  const addProduct = (newProduct) => {
+    setProducts([{ ...newProduct, id: uuidv4() }, ...products]);
+    console.log(...products);
+  };
+
   return (
     <div>
       <div className="container">
         <h1 className="title">Store Inventory</h1>
+
+        {/*   Add Product Feature */}
+
         <Button className="button" variant="secondary" onClick={handleShow}>
           Add Product
         </Button>
@@ -33,22 +44,22 @@ const ProductList = () => {
             Add Product
           </Modal.Header>
           <Modal.Body>
-            <AddProduct />
+            <AddProduct addProduct={addProduct} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-              Return
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Add Product
+              Go Back to Inventory
             </Button>
           </Modal.Footer>
         </Modal>
       </div>
+
+      {/* List of Products */}
+
       <div className="container">
         <Table>
           <tr>
-            <th style={{ width: "20px" }}>#</th>
+            <th style={{ width: "150px" }}>#</th>
             <th style={{ width: "200px" }}>Title</th>
             <th style={{ width: "100px" }}>Category</th>
             <th style={{ width: "100px" }}>Price</th>
