@@ -29,6 +29,18 @@ const ProductList = () => {
     console.log(...products);
   };
 
+  //Edit Product
+
+  /* const editProduct = (event, editedProduct) => {
+    event.preventDefault();
+    const newProductList = products.map((product) =>
+      product.id === editedProduct.id ? editedProduct : product
+    );
+    setProducts({
+      newProductList,
+    });
+  }; */
+
   return (
     <div>
       <div className="container">
@@ -53,12 +65,11 @@ const ProductList = () => {
           </Modal.Footer>
         </Modal>
 
-       {/*  Counter for the number of products in inventory */}
+        {/*  Counter for the number of products in inventory */}
         <p>
           <b>Total:</b> {products.length} products
         </p>
       </div>
-
 
       {/* List of Products */}
 
@@ -76,7 +87,12 @@ const ProductList = () => {
           </tr>
         </Table>
         {products.map((product) => (
-          <Product {...product} key={product.id} handleRemove={handleRemove} />
+          <Product
+            {...product}
+            key={product.id}
+            handleRemove={handleRemove}
+            /* editProduct={editProduct} */
+          />
         ))}
       </div>
     </div>

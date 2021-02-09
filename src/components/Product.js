@@ -3,12 +3,18 @@ import { Table, Modal, Button } from "react-bootstrap";
 import { FaEye, FaEdit } from "react-icons/fa";
 import { GoPrimitiveDot } from "react-icons/go";
 import { RiDeleteBinLine } from "react-icons/ri";
+import EditProduct from "./EditProduct";
 import "./Product.css";
 
 const Product = (props) => {
+  //For the Check Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  //For the Edit Modal
+  const [showEdit, setShowEdit] = useState(false);
+  const handleCloseEdit = () => setShowEdit(false);
+  const handleShowEdit = () => setShowEdit(true);
 
   return (
     <div>
@@ -30,6 +36,11 @@ const Product = (props) => {
               style={{ height: "40px", width: "40px" }}
             />
           </td>
+
+          {/* CRUD Buttons */}
+
+          {/*  See Details Button */}
+
           <td style={{ width: "50px" }}>
             <FaEye
               style={{ width: "50px", color: "green", cursor: "pointer" }}
@@ -72,9 +83,32 @@ const Product = (props) => {
               </Modal.Footer>
             </Modal>
           </td>
+
+          {/* Edit Product Button */}
+
           <td style={{ width: "50px" }}>
-            <FaEdit style={{ width: "50px", color: "grey" }} />
+            <FaEdit
+              style={{ width: "50px", color: "grey", cursor: "pointer" }}
+              onClick={handleShowEdit}
+            />
+            <Modal show={showEdit} onHide={handleCloseEdit}>
+              <Modal.Header closeButton className="product-title">
+                Edit Product
+              </Modal.Header>
+              <Modal.Body>
+                <EditProduct />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseEdit}>
+                  Go Back to Inventory
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </td>
+
+
+          {/* Delete Button */}
+          
           <td style={{ width: "50px" }}>
             <RiDeleteBinLine
               style={{ width: "50px", color: "red", cursor: "pointer" }}
