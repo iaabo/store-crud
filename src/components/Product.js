@@ -34,7 +34,7 @@ const Product = (props) => {
   const handleSubmit = (e) => {
     editProduct(e, editedProduct);
     alert(
-      "The Product was updated with success. Please, go back to inventory."
+      "The Product was updated with success!"
     );
   };
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Modal } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
-
 import Product from "./Product";
 import AddProduct from "./AddProduct";
 import "./Product.css";
