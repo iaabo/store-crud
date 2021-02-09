@@ -3,7 +3,6 @@ import { Table, Modal, Button, Form } from "react-bootstrap";
 import { FaEye, FaEdit } from "react-icons/fa";
 import { GoPrimitiveDot } from "react-icons/go";
 import { RiDeleteBinLine } from "react-icons/ri";
-import EditProduct from "./EditProduct";
 import "./Product.css";
 
 const Product = (props) => {
@@ -163,18 +162,13 @@ const Product = (props) => {
                       required
                     />
                     <Modal.Footer>
-                      <Button variant="primary" type="submit">
-                        Edit Product
+                      <Button variant="primary" type="submit" onClick={handleCloseEdit}>
+                        Update Product
                       </Button>
                     </Modal.Footer>
                   </form>
                 </Form.Group>
               </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseEdit}>
-                  Go Back to Inventory
-                </Button>
-              </Modal.Footer>
             </Modal>
           </td>
 
