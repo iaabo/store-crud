@@ -7,7 +7,7 @@ const Nav = () => {
     <div>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">
-          The Fake Store - Admin Backoffice
+          The Store - Admin Backoffice
         </Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
