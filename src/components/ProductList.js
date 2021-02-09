@@ -3,6 +3,8 @@ import { Table, Button, Modal, InputGroup, FormControl } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import Product from "./Product";
 import AddProduct from "./AddProduct";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import "./Product.css";
 
 const ProductList = () => {
@@ -36,7 +38,6 @@ const ProductList = () => {
   };
 
   //Edit Product
-
   const editProduct = (e, editedProduct) => {
     e.preventDefault();
     const newProductList = products.map((product) =>
@@ -45,12 +46,13 @@ const ProductList = () => {
     setProducts(newProductList);
   };
 
+  //searchBar
   const filteredProducts = products.filter((product) => {
     return product.title.toLowerCase().startsWith(search.toLowerCase());
   });
 
   return (
-    <div >
+    <div>
       <div className="container">
         <div className="search-container">
           <h1 className="title">Store Inventory</h1>
@@ -67,8 +69,8 @@ const ProductList = () => {
             </InputGroup.Prepend>
           </InputGroup>
         </div>
-        {/*   Add Product Modal when clicking the Add Product button */}
 
+        {/*   Add Product Modal when clicking the Add Product button */}
         <Button className="button" variant="secondary" onClick={handleShow}>
           Add Product
         </Button>
@@ -107,14 +109,22 @@ const ProductList = () => {
             <th style={{ width: "50px" }}>Delete</th>
           </tr>
         </Table>
-        {filteredProducts.map((product) => (
-          <Product
-            {...product}
-            key={product.id}
-            handleRemove={handleRemove}
-            editProduct={editProduct}
-          />
-        ))}
+        {filteredProducts.length > 0 ? (
+          <div>
+            {filteredProducts.map((product) => (
+              <Product
+                {...product}
+                key={product.id}
+                handleRemove={handleRemove}
+                editProduct={editProduct}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="loading-spinner">
+            <Loader type="ThreeDots" color="grey" height={80} width={80} />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ function App() {
     <div className="global-app">
       <Sidebar />
         <Nav />
-      <div className="App" style={{ marginLeft: "250px" }}>
+      <div className="App" style={{ marginLeft: "150px" }}>
         <ProductList />
       </div>
       <Footer />

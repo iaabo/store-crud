@@ -18,15 +18,15 @@
 
 .sidebar {
   height: 100%;
-  width: 250px;
+  width: 150px;
   background-color: #2a2a2c;
   position: fixed;
 }
 
-.admin {
-  color: #fff;
-  margin-left: 15%;
-  margin-top: 220px;
-  font-size: 20px;
-  font-weight: bold;
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 50px;
 }
