@@ -74,7 +74,7 @@ const AddProduct = (props) => {
             required
           />
           <Modal.Footer>
-            <Button variant="primary" type="submit">
+            <Button variant="warning" type="submit">
               Add Product
             </Button>
           </Modal.Footer>

@@ -33,9 +33,7 @@ const Product = (props) => {
 
   const handleSubmit = (e) => {
     editProduct(e, editedProduct);
-    alert(
-      "The Product was updated with success!"
-    );
+    alert("The Product was updated with success!");
   };
 
   return (
@@ -121,6 +119,8 @@ const Product = (props) => {
                 <Form.Group>
                   <form onSubmit={handleSubmit}>
                     <Form.Control
+                      as="textarea"
+                      rows={2}
                       size="sm"
                       type="text"
                       name="title"
@@ -129,12 +129,15 @@ const Product = (props) => {
                     />
                     <br />
                     <Form.Control
+                      as="textarea"
+                      rows={4}
                       size="sm"
                       type="text"
                       name="description"
                       defaultValue={description}
                       onChange={handleChange}
                     />
+
                     <br />
                     <Form.Control
                       size="sm"
@@ -162,7 +165,11 @@ const Product = (props) => {
                       required
                     />
                     <Modal.Footer>
-                      <Button variant="primary" type="submit" onClick={handleCloseEdit}>
+                      <Button
+                        variant="warning"
+                        type="submit"
+                        onClick={handleCloseEdit}
+                      >
                         Update Product
                       </Button>
                     </Modal.Footer>
